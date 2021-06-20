@@ -9,7 +9,6 @@ function rootReducer(state = initialState, action) {
         return {
             ...state,
             casillero: state.casillero + action.payload
-            // el payload será el número que nos dé el dado en el turno
         }
     }
     return state;

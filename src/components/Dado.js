@@ -22,6 +22,7 @@ export class Dado extends Component {
         var numDado = Math.floor(Math.random() * (7 - 1)) + 1;
         setTimeout(() => {this.props.avance(numDado);}, 1000);
         this.setState({numero: numDado});
+
     }   
     
 
@@ -32,15 +33,33 @@ export class Dado extends Component {
         return(
             <div>
                 <p>Click para tirar el dado</p>
-                <p>Ahora estás en el casillero {this.props.casillero}</p>
+                <p>Ahora estás en el casillero <span style={{fontSize: '2em', fontWeight: '700'}}>{this.props.casillero}</span></p>
                 <button onClick={(e) => {this.handleSubmit(e)}}>
                     Tirar dado
                 </button>
-                <div>
-                    <div>
-                        <p>Salió el número {numero}</p>
-                    </div>
-                </div>
+                {
+                        numero ?
+                        (
+                            numero === 1 ?
+                            <div><img src='relampago/images/1.gif' alt="dado1"/></div> :
+                            numero === 2 ?
+                            <div><img src='relampago/images/2.gif' alt="dado2"/></div> :
+                            numero === 3 ?
+                            <div><img src='relampago/images/3.gif' alt="dado3"/></div> :
+                            numero === 4 ?
+                            <div><img src='relampago/images/4.gif' alt="dado4"/></div> :
+                            numero === 5 ?
+                            <div><img src='relampago/images/5.gif' alt="dado5"/></div> :
+                            numero === 6 ?
+                            <div><img src='relampago/images/6.gif' alt="dado6"/></div> :
+                            <div><p></p></div>
+                        )
+                        :
+                        (
+                            
+                            <h2>Hola, tirá el dado para comenzar</h2>
+                        )
+                }
             </div>
         )
     }
