@@ -19,9 +19,11 @@ export class Dado extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        var numRandom = Math.floor(Math.random() * (7 - 1)) + 1;
-        this.props.avance(numRandom);
-        console.log("Salió el " + numRandom);
+        var numDado = Math.floor(Math.random() * (7 - 1)) + 1;
+        setTimeout(() => {this.props.avance(numDado);}, 1000);
+        //this.state.numero = numDado;
+        this.setState({numero: numDado});
+
     }
 
     //avanzaCasillero = (min, max) => {
@@ -43,6 +45,11 @@ export class Dado extends Component {
                 <button onClick={(e) => {this.handleSubmit(e)}}>
                     Dado
                 </button>
+                <div>
+                    {
+                       <p>Salió el número {numero}</p>
+                    }
+                </div>
                 
             </div>
         )
