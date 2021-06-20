@@ -21,17 +21,8 @@ export class Dado extends Component {
         event.preventDefault();
         var numDado = Math.floor(Math.random() * (7 - 1)) + 1;
         setTimeout(() => {this.props.avance(numDado);}, 1000);
-        //this.state.numero = numDado;
         this.setState({numero: numDado});
-
-    }
-
-    //avanzaCasillero = (min, max) => {
-    //    var numRandom = Math.floor(Math.random() * (max - min)) + min;
-    //    var nuevoValor = numRandom + this.props.casillero;
-    //    console.log(nuevoValor);
-    //}  
-    
+    }   
     
 
 
@@ -43,14 +34,13 @@ export class Dado extends Component {
                 <p>Click para tirar el dado</p>
                 <p>Ahora estás en el casillero {this.props.casillero}</p>
                 <button onClick={(e) => {this.handleSubmit(e)}}>
-                    Dado
+                    Tirar dado
                 </button>
                 <div>
-                    {
-                       <p>Salió el número {numero}</p>
-                    }
+                    <div>
+                        <p>Salió el número {numero}</p>
+                    </div>
                 </div>
-                
             </div>
         )
     }
