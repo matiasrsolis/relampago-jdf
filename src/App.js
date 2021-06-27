@@ -1,12 +1,21 @@
 import React from 'react';
+import { Route } from "react-router-dom";
 import './App.css';
-import Dado from './components/Dado';
+import Tablero from './components/Tablero';
+import { TiroLibre } from './components/TiroLibre';
+import { Penal } from './components/Penal';
+import { Remate } from './components/Remate';
+import NavBar from './components/NavBar';
 
 
 function App() {
   return (
       <React.Fragment>
-          <Dado />
+          <NavBar />
+          <Route exact path="/" component={Tablero} />
+          <Route path="/tiro-libre" component={TiroLibre} />
+          <Route path="/penal" component={Penal} />
+          <Route path="/remate" component={Remate} />
       </React.Fragment>
   );
 }
