@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { avance, gol, turno } from "../action";
 import Dado from "./Dado";
+import TiroLibre from "./TiroLibre";
 
 // En tablero además de mostrarse los casilleros y el avance de la ficha,
 // se establecen los significados de cada casillero
@@ -91,6 +92,10 @@ export class Tablero extends Component {
                         <p></p>
                     )
                 }
+
+                <div>
+                    <TiroLibre />
+                </div>
 
             </div>
 

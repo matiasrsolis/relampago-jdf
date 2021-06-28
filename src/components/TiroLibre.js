@@ -28,10 +28,11 @@ export class TiroLibre extends Component {
         if( numDado === 3 ){
             this.props.gol(1);
             !this.props.turno ? this.props.turno(true) : this.props.turno(false);
-            setTimeout( function() {window.location.href = "/";}, 2000);
+            this.props.avance(-numDado); //Chequear si turno es falso
         }
         this.props.turno ? this.props.turno(false) : this.props.turno(true);
-        setTimeout( function() {window.location.href = "/";}, 2000);
+        this.props.avance(-numDado);
+        //setTimeout( function() {window.location.href = "/";}, 2000);
     }
 
     render() {
@@ -111,3 +112,4 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, { avance, gol, turno }) (TiroLibre);
+
