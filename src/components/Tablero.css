@@ -1,0 +1,305 @@
+.contentCancha{
+    max-width: 1400px;
+    margin: auto;
+    position: relative;
+}
+
+.contentCancha img{
+    width: 100%;
+    margin: auto;
+    display: block;
+    height: calc(100vh - 100px);
+}
+
+#ficha>div{
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    background-color: rgb(65, 3, 3);
+}
+
+aside{
+    background-color: rgb(248, 243, 234);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+aside>div{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+aside>div button{
+    display: block;
+    background-color: rgb(1, 167, 29);
+    border-radius: 100px;
+    border: none;
+    font-size: 1.2em;
+    color: #ffffff;
+    padding: .5em;
+}
+aside>div a{
+    display: block;
+    background-color: rgb(1, 167, 29);
+    border-radius: 100px;
+    border: none;
+    font-size: 1.2em;
+    color: #ffffff;
+    padding: .5em;
+    text-decoration: none;
+}
+aside>div h2{
+    width: 50%;
+}
+
+
+.f0{
+    position: absolute;
+    top: calc(50% - 12.5px);
+    left: calc(50% - 12.5px);
+    transition: all ease .6s;
+}
+.f1{
+    position: absolute;
+    top: calc(46% - 12.5px);
+    left: calc(50% - 12.5px);
+    transition: all ease .6s;
+}
+.f2{
+    position: absolute;
+    top: calc(41% - 12.5px);
+    left: calc(50% - 12.5px);
+    transition: all ease .6s;
+}
+.f3{
+    position: absolute;
+    transition: all ease .6s;
+    top: calc(36% - 12.5px);
+    left: calc(50% - 12.5px);
+}
+.f4{
+    position: absolute;
+    top: calc(36% - 12.5px);
+    left: calc(41% - 12.5px);
+    transition: all ease .6s;
+}
+.f5{
+    position: absolute;
+    transition: all ease .6s;
+    animation: lateral 1s;
+}
+@keyframes lateral {
+    0% {
+        top: calc(36% - 12.5px);
+        left: calc(32% - 12.5px);
+    }
+    100% {
+        top: calc(36% - 12.5px);
+        left: calc(90% - 12.5px);
+    }
+}
+.f6{
+    position: absolute;
+    transition: all ease .6s;
+    top: calc(36% - 12.5px);
+    left: calc(22% - 12.5px);
+}
+.f7{
+    position: absolute;
+    transition: all ease .6s;
+    top: calc(32% - 12.5px);
+    left: calc(22% - 12.5px);
+}
+.f8{
+    position: absolute;
+    transition: all ease .6s;
+    top: calc(28% - 12.5px);
+    left: calc(23% - 12.5px);
+}
+.f9{
+    position: absolute;
+    transition: all ease .6s;
+    top: calc(23% - 12.5px);
+    left: calc(22% - 12.5px);
+}
+.f10{
+    position: absolute;
+    transition: all ease .6s;
+    top: calc(19% - 12.5px);
+    left: calc(22% - 12.5px);
+}
+.f11{
+    position: absolute;
+    transition: all ease .6s;
+    top: calc(14% - 12.5px);
+    left: calc(22% - 12.5px);
+}
+.f12{
+    position: absolute;
+    transition: all ease .6s;
+    top: calc(10% - 12.5px);
+    left: calc(22% - 12.5px);
+}
+.f13{
+    position: absolute;
+    transition: all ease .6s;
+    top: calc(10% - 12.5px);
+    left: calc(32% - 12.5px);
+}
+.f14{
+    position: absolute;
+    transition: all ease .6s;
+    top: calc(10% - 12.5px);
+    left: calc(41% - 12.5px);
+}
+.f15{
+    position: absolute;
+    transition: all ease .6s;
+    top: calc(10% - 12.5px);
+    left: calc(50% - 12.5px);
+}
+.f16{
+    position: absolute;
+    transition: all ease .6s;
+    top: calc(10% - 12.5px);
+    left: calc(60% - 12.5px);
+}
+.f17{
+    position: absolute;
+    transition: all ease .6s;
+    top: calc(10% - 12.5px);
+    left: calc(69% - 12.5px);
+}
+.f18{
+    position: absolute;
+    transition: all ease .6s;
+    top: calc(10% - 12.5px);
+    left: calc(78% - 12.5px);
+}
+
+.f-1{
+    position: absolute;
+    top: calc(54% - 12.5px);
+    left: calc(50% - 12.5px);
+    transition: all ease .6s;
+}
+.f-2{
+    position: absolute;
+    top: calc(59% - 12.5px);
+    left: calc(50% - 12.5px);
+    transition: all ease .6s;
+}
+.f-3{
+    position: absolute;
+    transition: all ease .6s;
+    top: calc(63% - 12.5px);
+    left: calc(50% - 12.5px);
+}
+.f-4{
+    position: absolute;
+    top: calc(63% - 12.5px);
+    left: calc(60% - 12.5px);
+    transition: all ease .6s;
+}
+.f-5{
+    position: absolute;
+    transition: all ease .6s;
+    animation: lateralRival 1s;
+}
+@keyframes lateralRival {
+    0% {
+        top: calc(63% - 12.5px);
+        left: calc(69% - 12.5px);
+    }
+    100% {
+        top: calc(63% - 12.5px);
+        left: calc(11% - 12.5px);
+    }
+}
+.f-6{
+    position: absolute;
+    transition: all ease .6s;
+    top: calc(63% - 12.5px);
+    left: calc(78% - 12.5px);
+}
+.f-7{
+    position: absolute;
+    transition: all ease .6s;
+    top: calc(68% - 12.5px);
+    left: calc(78% - 12.5px);
+}
+.f-8{
+    position: absolute;
+    transition: all ease .6s;
+    top: calc(72% - 12.5px);
+    left: calc(78% - 12.5px);
+}
+.f-9{
+    position: absolute;
+    transition: all ease .6s;
+    top: calc(76% - 12.5px);
+    left: calc(78% - 12.5px);
+}
+.f-10{
+    position: absolute;
+    transition: all ease .6s;
+    top: calc(81% - 12.5px);
+    left: calc(78% - 12.5px);
+}
+.f-11{
+    position: absolute;
+    transition: all ease .6s;
+    top: calc(85% - 12.5px);
+    left: calc(78% - 12.5px);
+}
+.f-12{
+    position: absolute;
+    transition: all ease .6s;
+    top: calc(90% - 12.5px);
+    left: calc(78% - 12.5px);
+}
+.f-13{
+    position: absolute;
+    transition: all ease .6s;
+    top: calc(90% - 12.5px);
+    left: calc(69% - 12.5px);
+}
+.f-14{
+    position: absolute;
+    transition: all ease .6s;
+    top: calc(90% - 12.5px);
+    left: calc(59% - 12.5px);
+}
+.f-15{
+    position: absolute;
+    transition: all ease .6s;
+    top: calc(90% - 12.5px);
+    left: calc(50% - 12.5px);
+}
+.f-16{
+    position: absolute;
+    transition: all ease .6s;
+    top: calc(90% - 12.5px);
+    left: calc(41% - 12.5px);
+}
+.f-17{
+    position: absolute;
+    transition: all ease .6s;
+    top: calc(90% - 12.5px);
+    left: calc(31% - 12.5px);
+}
+.f-18{
+    position: absolute;
+    transition: all ease .6s;
+    top: calc(90% - 12.5px);
+    left: calc(22% - 12.5px);
+}
+
+
+
+
+@media (min-width: 736px) {
+    
+}
+

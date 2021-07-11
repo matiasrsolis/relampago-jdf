@@ -32,7 +32,6 @@ export class TiroLibre extends Component {
         }
         this.props.turno ? this.props.turno(false) : this.props.turno(true);
         this.props.avance(-numDado);
-        //setTimeout( function() {window.location.href = "/";}, 2000);
     }
 
     render() {

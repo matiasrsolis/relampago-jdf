@@ -2,6 +2,11 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { avance, gol, turno } from "../action";
 import { NavLink } from 'react-router-dom';
+import './Dado.css';
+import './Tablero.css';
+import 'bootstrap/dist/css/bootstrap.css';
+import { Modal, ModalHeader, ModalFooter } from "reactstrap";
+import TiroLibre from "./TiroLibre";
 
 // El dado va a devolver un número random para avanzar en el tablero.
 // Ese número va adicionarse al avance del estado actual del casillero
@@ -10,7 +15,8 @@ export class Dado extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            numero: 0
+            numero: 0,
+            tiroLibre: false
         };
     }
 
@@ -51,6 +57,11 @@ export class Dado extends Component {
         this.props.avance(-numero);
         !this.props.turno ? this.props.turno(true) : this.props.turno(false);
     }
+
+
+    tiroLibre = () => {
+        this.setState({tiroLibre: !this.state.tiroLibre});
+    }
     
 
 
@@ -59,35 +70,45 @@ export class Dado extends Component {
         const { numero } = this.state;
         return(
             <div>
-                <p>Click para tirar el dado</p>
 
                 {
                     this.props.casillero ?
                     (
-                        this.props.casillero === 2 ?
-                        <div><button onClick={(e) => {this.paseLargo(e)}}>Pase largo</button></div> :
+                        // this.props.casillero === 2 ?
+                        //     <div><button onClick={(e) => {this.paseLargo(e)}}>Pase largo</button></div> :
+
                         this.props.casillero === 3 ?
-                        <div><button onClick={(e) => {this.pierdePelota(e, 3)}}>Pierde la pelota.</button></div> :
+                            <div><button onClick={(e) => {this.pierdePelota(e, 3)}}>Pierde la pelota.</button></div> :
+
                         this.props.casillero === 4 ?
-                        <div><NavLink to="/remate" >Penal</NavLink></div> :
+                            <div><NavLink to="/remate" >Remate de lejos</NavLink></div> :
+                            
                         this.props.casillero === 5 ?
-                        <div> <button onClick={(e) => {this.lateral(e)}}>Lateral</button></div> :
+                            <div> <button onClick={(e) => {this.lateral(e)}}>Lateral</button></div> :
+
                         this.props.casillero === 6 ?
-                        <div><button onClick={(e) => {this.pierdePelota(e, 6)}}>Pierde la pelota.</button></div> :
+                            <div><button onClick={(e) => {this.pierdePelota(e, 6)}}>Pierde la pelota.</button></div> :
+
                         this.props.casillero === 7 ?
-                        <div><NavLink to="/tiro-libre" >Patear tiro libre</NavLink></div> :
+                            <div><button onClick={this.tiroLibre}>Tiro libre</button></div> :
+
                         this.props.casillero === 8 ?
-                        <div><NavLink to="/penal" >Penal</NavLink></div> :
+                            <div><NavLink to="/penal" >Penal</NavLink></div> :
+
                         this.props.casillero === 9 ?
-                        <div><button onClick={(e) => {this.pierdePelota(e, 9)}}>Off side</button></div> :
+                            <div><button onClick={(e) => {this.pierdePelota(e, 9)}}>Off side</button></div> :
+
                         this.props.casillero === 10 ?
-                        <div><button onClick={(e) => {this.gol(e, 10)}}>GOOOOOOOOL!!!!!</button></div> :
+                            <div><button onClick={(e) => {this.gol(e, 10)}}>GOOOOOOOOL!!!!!</button></div> :
+
                         this.props.casillero === 11 ?
-                        <div><button onClick={(e) => {this.handleSubmit(e)}}>Corner</button></div> :
+                            <div><button onClick={(e) => {this.handleSubmit(e)}}>Corner</button></div> :
+
                         this.props.casillero === 12 ?
-                        <div><button onClick={(e) => {this.handleSubmit(e)}}>VAR, están revisando la jugada!</button></div> :
+                            <div><button onClick={(e) => {this.handleSubmit(e)}}>VAR, están revisando la jugada!</button></div> :
+
                         this.props.casillero > 12 &&  this.props.casillero < 19 ?
-                        <div><button onClick={(e) => {this.handleSubmit(e)}}>Centro al área!</button></div> :
+                            <div><button onClick={(e) => {this.handleSubmit(e)}}>Centro al área!</button></div> :
 
                         <button id="tirarDado" onClick={(e) => {this.handleSubmit(e)}}>Tirar dado</button>
                     )  
@@ -116,9 +137,23 @@ export class Dado extends Component {
                         )
                         :
                         (
-                            <h2>Tirá el dado. ¡EMPIEZA EL PARTIDO!</h2>
+                            <h2>¡Empieza el partido!</h2>
                         )
                 }
+
+                <Modal isOpen={this.state.tiroLibre}>
+                    <ModalHeader>
+                        <h2>Tiro Libre</h2>
+                    </ModalHeader>
+                        <TiroLibre />
+                    <ModalFooter>
+                        <button onClick={this.tiroLibre}>Cerrar</button>
+                    </ModalFooter>
+                </Modal>
+
+                
+
+                
             </div>
         )
     }
