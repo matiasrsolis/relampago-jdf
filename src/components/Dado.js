@@ -4,7 +4,9 @@ import { avance, gol, golRival, turno } from "../action";
 import { NavLink } from 'react-router-dom';
 import './Dado.css';
 import './Tablero.css';
+import Remate from "./Remate";
 import TiroLibre from "./TiroLibre";
+import Penal from "./Penal";
 import 'bootstrap/dist/css/bootstrap.css';
 import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 
@@ -16,7 +18,9 @@ export class Dado extends Component {
         super(props);
         this.state = {
             numero: 0,
-            tiroLibre: false
+            remate: false,
+            tiroLibre: false,
+            penal: false
         };
     }
 
@@ -59,16 +63,23 @@ export class Dado extends Component {
         
     }
 
+    remate = () => {
+        this.setState({remate: !this.state.remate});
+    }
 
     tiroLibre = () => {
         this.setState({tiroLibre: !this.state.tiroLibre});
     }
     
-
+    penal = () => {
+        this.setState({penal: !this.state.penal});
+    }
 
     render() {
         
         const { numero } = this.state;
+        //var casillero = Math.abs(this.props.casillero);
+
         return(
             <div>
 
@@ -78,37 +89,40 @@ export class Dado extends Component {
                         // this.props.casillero === 2 ?
                         //     <div><button onClick={(e) => {this.paseLargo(e)}}>Pase largo</button></div> :
 
-                        this.props.casillero === 3 ?
+                        this.props.casillero === 3 || this.props.casillero === -3 ?
                             <div><button onClick={(e) => {this.pierdePelota(e, 3)}}>Pierde la pelota.</button></div> :
 
-                        this.props.casillero === 4 ?
-                            <div><NavLink to="/remate" >Remate de lejos</NavLink></div> :
+                        this.props.casillero === 4 || this.props.casillero === -4 ?
+                            <div><button onClick={this.remate}>Remate de lejos</button></div> :
                             
-                        this.props.casillero === 5 ?
-                            <div> <button onClick={(e) => {this.lateral(e)}}>Lateral</button></div> :
+                        //this.props.casillero === 5 ?
+                        //    <div> <button onClick={(e) => {this.lateral(e)}}>Lateral</button></div> :
 
-                        this.props.casillero === 6 ?
+                        this.props.casillero === 6 || this.props.casillero === -6 ?
                             <div><button onClick={(e) => {this.pierdePelota(e, 6)}}>Pierde la pelota.</button></div> :
 
-                        this.props.casillero === 7 ?
+                        this.props.casillero === 7 || this.props.casillero === -7 ?
                             <div><button onClick={this.tiroLibre}>Tiro libre</button></div> :
 
-                        this.props.casillero === 8 ?
-                            <div><NavLink to="/penal" >Penal</NavLink></div> :
+                        this.props.casillero === 8 || this.props.casillero === -8 ?
+                            <div><button onClick={this.penal}>Penal</button></div> :
 
-                        this.props.casillero === 9 ?
+                        this.props.casillero === 9 || this.props.casillero === -9 ?
                             <div><button onClick={(e) => {this.pierdePelota(e, 9)}}>Off side</button></div> :
 
-                        this.props.casillero === 10 ?
+                        this.props.casillero === 10 || this.props.casillero === -10 ?
                             <div><button onClick={(e) => {this.gol(e, 10)}}>GOOOOOOOOL!!!!!</button></div> :
 
-                        this.props.casillero === 11 ?
+                        this.props.casillero === 11 || this.props.casillero === -11 ?
                             <div><button onClick={(e) => {this.handleSubmit(e)}}>Corner</button></div> :
 
-                        this.props.casillero === 12 ?
+                        this.props.casillero === 12 || this.props.casillero === -12 ?
                             <div><button onClick={(e) => {this.handleSubmit(e)}}>VAR, están revisando la jugada!</button></div> :
 
                         this.props.casillero > 12 &&  this.props.casillero < 19 ?
+                            <div><button onClick={(e) => {this.handleSubmit(e)}}>Centro al área!</button></div> :
+
+                        this.props.casillero < -12 &&  this.props.casillero > -19 ?
                             <div><button onClick={(e) => {this.handleSubmit(e)}}>Centro al área!</button></div> :
 
                         <button id="tirarDado" onClick={(e) => {this.handleSubmit(e)}}>Tirar dado</button>
@@ -138,26 +152,31 @@ export class Dado extends Component {
                         )
                         :
                         (
-                            <div><button onClick={this.tiroLibre}>Tiro libre</button></div>
+                            <div><button onClick={this.remate}>Remate de lejos</button></div>
                         )
                 }
 
-                
-                <Modal isOpen={this.state.tiroLibre}>
-
-                    <ModalHeader>
-                        <h2>Tiro Libre</h2>
-                    </ModalHeader>
-
-                    <ModalBody>
-                        <TiroLibre/>
-                    </ModalBody>
-
-                    <ModalFooter>
-                        <button onClick={this.tiroLibre}>Cerrar</button>
-                    </ModalFooter>
-
+                {/* Remate de lejos */}
+                <Modal isOpen={this.state.remate}>
+                    <ModalHeader><h2>Remate de lejos</h2></ModalHeader>
+                    <ModalBody><Remate/></ModalBody>
+                    <ModalFooter><button onClick={this.remate}>Cerrar</button></ModalFooter>
                 </Modal>
+                
+                {/* Tiro libre */}
+                <Modal isOpen={this.state.tiroLibre}>
+                    <ModalHeader><h2>Tiro Libre</h2></ModalHeader>
+                    <ModalBody><TiroLibre/></ModalBody>
+                    <ModalFooter><button onClick={this.tiroLibre}>Cerrar</button></ModalFooter>
+                </Modal>
+
+                {/* Penal */}
+                <Modal isOpen={this.state.penal}>
+                    <ModalHeader><h2>Penal</h2></ModalHeader>
+                    <ModalBody><Penal/></ModalBody>
+                    <ModalFooter><button onClick={this.penal}>Cerrar</button></ModalFooter>
+                </Modal>
+
                 
             </div>
         )
