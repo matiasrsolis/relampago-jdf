@@ -1,5 +1,6 @@
 export const AVANCE = 'AVANCE';
 export const GOL = 'GOL';
+export const GOLRIVAL = 'GOLRIVAL';
 export const TURNO = 'TURNO';
 
 export function avance(n){
@@ -16,10 +17,16 @@ export function gol(n){
     }
 }
 
-export function turno(n){
+export function golRival(n){
     return {
-        type: TURNO, 
+        type: GOLRIVAL,
         payload: n
+    }
+}
+
+export function turno(){
+    return {
+        type: TURNO
     }
 }
 

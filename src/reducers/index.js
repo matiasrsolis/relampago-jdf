@@ -1,4 +1,4 @@
-import { AVANCE, GOL, TURNO } from '../action';
+import { AVANCE, GOL, GOLRIVAL, TURNO } from '../action';
 
 const initialState = {
     casillero: 0,
@@ -20,7 +20,7 @@ function rootReducer(state = initialState, action) {
             casillero: state.casillero + action.payload
         }
     }
-    if(action.type === GOL && !state.turno) {
+    if(action.type === GOLRIVAL) {
         return {
             ...state,
             golRival: state.golRival + action.payload
@@ -35,7 +35,7 @@ function rootReducer(state = initialState, action) {
     if (action.type === TURNO) {
         return {
             ...state,
-            turno: action.payload
+            turno: !state.turno
         }
     }
     return state;

@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { avance, gol, turno } from "../action";
+import { avance, gol, golRival, turno } from "../action";
 import { NavLink } from 'react-router-dom';
 import './Dado.css';
 import './Tablero.css';
-import 'bootstrap/dist/css/bootstrap.css';
-import { Modal, ModalHeader, ModalFooter } from "reactstrap";
 import TiroLibre from "./TiroLibre";
+import 'bootstrap/dist/css/bootstrap.css';
+import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 
 // El dado va a devolver un número random para avanzar en el tablero.
 // Ese número va adicionarse al avance del estado actual del casillero
@@ -48,14 +48,15 @@ export class Dado extends Component {
     pierdePelota(event, numero) {
         event.preventDefault();
         this.props.avance(-numero);
-        !this.props.turno ? this.props.turno(true) : this.props.turno(false);
+        this.props.turno();
     }
 
     gol(event, numero){
         event.preventDefault();
         this.props.gol(1);
+        this.props.turno();
         this.props.avance(-numero);
-        !this.props.turno ? this.props.turno(true) : this.props.turno(false);
+        
     }
 
 
@@ -137,22 +138,26 @@ export class Dado extends Component {
                         )
                         :
                         (
-                            <h2>¡Empieza el partido!</h2>
+                            <div><button onClick={this.tiroLibre}>Tiro libre</button></div>
                         )
                 }
 
+                
                 <Modal isOpen={this.state.tiroLibre}>
+
                     <ModalHeader>
                         <h2>Tiro Libre</h2>
                     </ModalHeader>
-                        <TiroLibre />
+
+                    <ModalBody>
+                        <TiroLibre/>
+                    </ModalBody>
+
                     <ModalFooter>
                         <button onClick={this.tiroLibre}>Cerrar</button>
                     </ModalFooter>
+
                 </Modal>
-
-                
-
                 
             </div>
         )
@@ -177,5 +182,5 @@ function mapStateToProps(state) {
 //     mapDispatchToProps
 // )(Dado);
 
-export default connect(mapStateToProps, { avance, gol, turno }) (Dado);
+export default connect(mapStateToProps, { avance, gol, golRival, turno }) (Dado);
 

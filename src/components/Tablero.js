@@ -45,6 +45,8 @@ export class Tablero extends Component {
                 </aside>
 
                 
+
+                
             </div>
 
         )
