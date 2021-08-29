@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { avance, gol, golRival, turno } from "../action";
+import { avance, sacaMedio, gol, golRival, turno } from "../action";
 
 
 
@@ -20,30 +20,23 @@ export class Remate extends Component {
     handleSubmit(event) {
         event.preventDefault();
         var numDado = Math.floor(Math.random() * (7 - 1)) + 1;
-        var casillero = Math.abs(this.props.casillero);
 
         this.setState({numero: numDado});
 
-        if(numDado !== 3 && this.props.turnoMio === false){
+        if(numDado === 6 && this.props.turnoMio === false){
             this.props.golRival(1);
             this.props.turno();
-            this.props.avance(-casillero);
-
-            console.log(casillero);
+            this.props.sacaMedio();
             return;
         }
-        if(numDado !== 3 && this.props.turnoMio === true){
+        if(numDado === 6 && this.props.turnoMio === true){
             this.props.gol(1);
             this.props.turno();
-            this.props.avance(-casillero);
-
-            console.log(casillero);
+            this.props.sacaMedio();
             return;
         }
-        console.log(casillero);
         this.props.turno();
-        this.props.avance(-casillero);
-        
+        this.props.sacaMedio();
         
     }
 
@@ -82,9 +75,9 @@ export class Remate extends Component {
 
 function mapStateToProps(state) {
     return {
-        casillero: state.casillero,
+        currentCasillero: state.casillero,
         turnoMio: state.turno
     };
 }
 
-export default connect(mapStateToProps, { avance, gol, golRival, turno }) (Remate);
+export default connect(mapStateToProps, { avance, sacaMedio, gol, golRival, turno }) (Remate);

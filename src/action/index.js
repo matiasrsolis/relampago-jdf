@@ -1,4 +1,5 @@
 export const AVANCE = 'AVANCE';
+export const SACAMEDIO = 'SACAMEDIO';
 export const GOL = 'GOL';
 export const GOLRIVAL = 'GOLRIVAL';
 export const TURNO = 'TURNO';
@@ -7,6 +8,12 @@ export function avance(n){
     return {
         type: AVANCE,
         payload: n
+    }
+}
+
+export function sacaMedio(){
+    return {
+        type: SACAMEDIO
     }
 }
 

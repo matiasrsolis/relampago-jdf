@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { avance, gol, turno } from "../action";
+import { avance, gol, golRival, turno } from "../action";
 import Dado from "./Dado";
 import './Tablero.css';
 
@@ -25,7 +25,8 @@ export class Tablero extends Component {
 
             <div>
 
-                <p>Nº de casillero: <span style={{fontSize: '2em', fontWeight: '700'}}>{this.props.casillero}</span></p>
+                <p>Nosotros: <span style={{fontSize: '2em', fontWeight: '700'}}>{this.props.goles}</span></p>
+                <p>Ellos: <span style={{fontSize: '2em', fontWeight: '700'}}>{this.props.golesRival}</span></p>
 
                 <div className="contentCancha">
 
@@ -61,8 +62,10 @@ export class Tablero extends Component {
 
 function mapStateToProps(state) {
     return {
-        casillero: state.casillero
+        casillero: state.casillero,
+        goles: state.gol,
+        golesRival: state.golRival
     };
 }
 
-export default connect(mapStateToProps, { avance, gol, turno }) (Tablero);
+export default connect(mapStateToProps, { avance, gol, golRival, turno }) (Tablero);

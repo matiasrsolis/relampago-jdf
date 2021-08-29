@@ -152,27 +152,27 @@ export class Dado extends Component {
                         )
                         :
                         (
-                            <div><button onClick={this.remate}>Remate de lejos</button></div>
+                            <div><button onClick={this.penal}>Penal</button></div>
                         )
                 }
 
                 {/* Remate de lejos */}
                 <Modal isOpen={this.state.remate}>
-                    <ModalHeader><h2>Remate de lejos</h2></ModalHeader>
+                    <ModalHeader>Remate de lejos</ModalHeader>
                     <ModalBody><Remate/></ModalBody>
                     <ModalFooter><button onClick={this.remate}>Cerrar</button></ModalFooter>
                 </Modal>
                 
                 {/* Tiro libre */}
                 <Modal isOpen={this.state.tiroLibre}>
-                    <ModalHeader><h2>Tiro Libre</h2></ModalHeader>
+                    <ModalHeader>Tiro Libre</ModalHeader>
                     <ModalBody><TiroLibre/></ModalBody>
                     <ModalFooter><button onClick={this.tiroLibre}>Cerrar</button></ModalFooter>
                 </Modal>
 
                 {/* Penal */}
                 <Modal isOpen={this.state.penal}>
-                    <ModalHeader><h2>Penal</h2></ModalHeader>
+                    <ModalHeader>Penal</ModalHeader>
                     <ModalBody><Penal/></ModalBody>
                     <ModalFooter><button onClick={this.penal}>Cerrar</button></ModalFooter>
                 </Modal>

@@ -1,4 +1,4 @@
-import { AVANCE, GOL, GOLRIVAL, TURNO } from '../action';
+import { AVANCE, GOL, GOLRIVAL, TURNO, SACAMEDIO } from '../action';
 
 const initialState = {
     casillero: 0,
@@ -18,6 +18,12 @@ function rootReducer(state = initialState, action) {
         return {
             ...state,
             casillero: state.casillero + action.payload
+        }
+    }
+    if (action.type === SACAMEDIO) {
+        return {
+            ...state,
+            casillero: 0
         }
     }
     if(action.type === GOLRIVAL) {
