@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { avance, gol, golRival, turno } from "../action";
-import { NavLink } from 'react-router-dom';
 import './Dado.css';
 import './Tablero.css';
 import Remate from "./Remate";
 import TiroLibre from "./TiroLibre";
 import Penal from "./Penal";
+import Corner from "./Corner";
 import 'bootstrap/dist/css/bootstrap.css';
 import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 
@@ -20,7 +20,8 @@ export class Dado extends Component {
             numero: 0,
             remate: false,
             tiroLibre: false,
-            penal: false
+            penal: false,
+            corner: false
         };
     }
 
@@ -63,6 +64,18 @@ export class Dado extends Component {
         
     }
 
+    gol = (event, numero) => {
+        event.preventDefault();
+        if(numero === 10) {
+            this.props.gol(1);
+            this.props.turno();
+            this.props.avance(-numero);
+        }
+        this.props.golRival(1);
+        this.props.avance(numero);
+        this.props.turno();
+    }
+
     remate = () => {
         this.setState({remate: !this.state.remate});
     }
@@ -73,6 +86,10 @@ export class Dado extends Component {
     
     penal = () => {
         this.setState({penal: !this.state.penal});
+    }
+
+    corner = () => {
+        this.setState({corner: !this.state.corner});
     }
 
     render() {
@@ -110,8 +127,11 @@ export class Dado extends Component {
                         this.props.casillero === 9 || this.props.casillero === -9 ?
                             <div><button onClick={(e) => {this.pierdePelota(e, 9)}}>Off side</button></div> :
 
-                        this.props.casillero === 10 || this.props.casillero === -10 ?
+                        this.props.casillero === 10 ?
                             <div><button onClick={(e) => {this.gol(e, 10)}}>GOOOOOOOOL!!!!!</button></div> :
+
+                        this.props.casillero === -10 ?
+                            <div><button onClick={(e) => {this.gol(e, -10)}}>GOOOOOOOOL!!!!!</button></div> :
 
                         this.props.casillero === 11 || this.props.casillero === -11 ?
                             <div><button onClick={(e) => {this.handleSubmit(e)}}>Corner</button></div> :
@@ -152,7 +172,7 @@ export class Dado extends Component {
                         )
                         :
                         (
-                            <div><button onClick={this.penal}>Penal</button></div>
+                            <div><button onClick={this.corner}>Corner</button></div>
                         )
                 }
 
@@ -177,6 +197,14 @@ export class Dado extends Component {
                     <ModalFooter><button onClick={this.penal}>Cerrar</button></ModalFooter>
                 </Modal>
 
+                {/* Corner */}
+                <Modal isOpen={this.state.corner}>
+                    <ModalHeader>Corner</ModalHeader>
+                    <ModalBody><Corner/></ModalBody>
+                    <ModalFooter><button onClick={this.corner}>Cerrar</button></ModalFooter>
+                </Modal>
+
+                
                 
             </div>
         )
