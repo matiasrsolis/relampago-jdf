@@ -7,6 +7,7 @@ import Remate from "./Remate";
 import TiroLibre from "./TiroLibre";
 import Penal from "./Penal";
 import Corner from "./Corner";
+import { Var } from "./var";
 import 'bootstrap/dist/css/bootstrap.css';
 import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 
@@ -21,7 +22,8 @@ export class Dado extends Component {
             remate: false,
             tiroLibre: false,
             penal: false,
-            corner: false
+            corner: false,
+            var: false
         };
     }
 
@@ -204,7 +206,12 @@ export class Dado extends Component {
                     <ModalFooter><button onClick={this.corner}>Cerrar</button></ModalFooter>
                 </Modal>
 
-                
+                {/* VAR */}
+                <Modal isOpen={this.state.var}>
+                    <ModalHeader>VAR: revisión de jugada</ModalHeader>
+                    <ModalBody><Var/></ModalBody>
+                    <ModalFooter><button onClick={this.var}>Cerrar</button></ModalFooter>
+                </Modal>
                 
             </div>
         )
