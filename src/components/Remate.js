@@ -50,6 +50,7 @@ export class Remate extends Component {
         
         return(
             <div>
+                <p>Si sale <b>6</b> es GOL.</p>
                 {
                     numero ?
                     (

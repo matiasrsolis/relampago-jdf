@@ -21,12 +21,25 @@ export class Tablero extends Component {
 
     render() {
 
+        let classname = 'turno';
+
+        if (this.props.currentTurno){
+            classname += 'Activo';
+        } else {
+            classname += 'Inactivo';
+        }
+
         return(
+
+            
 
             <div>
 
-                <p>Nosotros: <span style={{fontSize: '2em', fontWeight: '700'}}>{this.props.goles}</span></p>
-                <p>Ellos: <span style={{fontSize: '2em', fontWeight: '700'}}>{this.props.golesRival}</span></p>
+                <div>
+                    <p id="tableroNosotros">Nosotros: <span style={{fontSize: '2em', fontWeight: '700'}}>{this.props.goles}</span></p>
+                    <p id="tableroRival">Rival: <span style={{fontSize: '2em', fontWeight: '700'}}>{this.props.golesRival}</span></p>
+                </div>
+                
 
                 <div className="contentCancha">
 
@@ -36,7 +49,7 @@ export class Tablero extends Component {
                     </picture>
 
                     <div id="ficha" className={`f${this.props.casillero}`} ref={this.ficha} >
-                        <div></div>
+                        <div className={classname}></div>
                     </div>
 
                 </div>
@@ -64,7 +77,8 @@ function mapStateToProps(state) {
     return {
         casillero: state.casillero,
         goles: state.gol,
-        golesRival: state.golRival
+        golesRival: state.golRival,
+        currentTurno: state.turno
     };
 }
 

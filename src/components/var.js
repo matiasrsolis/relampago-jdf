@@ -52,6 +52,7 @@ export class Var extends Component {
         
         return(
             <div>
+                <p>Con 4 es GOL.</p>
                 {
                     numero ?
                     (
@@ -64,13 +65,13 @@ export class Var extends Component {
                         numero === 3 ?
                         <div>
                             <img src='relampago-jdf/images/3.gif' alt="dado3"/>
-                            <p>Otro corner</p>
+                            <p>No pasó nada.</p>
                             <button onClick={(e) => {this.handleSubmit(e)}}>Ejecutá denuevo el corner</button>
                         </div>
                         :
                         <div>
                             <img src={`relampago-jdf/images/${numero}.gif`} alt="dado1"/>
-                            <p>Afuera.</p>
+                            <p>No pasó nada.</p>
                         </div>
                     ) : (
                         <button onClick={(e) => {this.handleSubmit(e)}}>Tirá el dado para ejecutar el corner</button>

@@ -52,6 +52,9 @@ export class TiroLibre extends Component {
         
         return(
             <div>
+                
+                <p>Si sale <b>3</b> es GOL.</p>
+
                 {
                     numero ?
                     (

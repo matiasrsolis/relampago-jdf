@@ -52,6 +52,7 @@ export class Penal extends Component {
         
         return(
             <div>
+                <p>Si sale <b>3</b> lo errás.</p>
                 {
                     numero ?
                     (
