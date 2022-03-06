@@ -35,7 +35,7 @@ export class Tablero extends Component {
 
             <div>
 
-                <div>
+                <div classname="marcador">
                     <p id="tableroNosotros">Nosotros: <span style={{fontSize: '2em', fontWeight: '700'}}>{this.props.goles}</span></p>
                     <p id="tableroRival">Rival: <span style={{fontSize: '2em', fontWeight: '700'}}>{this.props.golesRival}</span></p>
                 </div>
@@ -58,9 +58,6 @@ export class Tablero extends Component {
                     <Dado/>
                 </aside>
 
-                
-
-                
             </div>
 
         )

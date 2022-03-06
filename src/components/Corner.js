@@ -52,6 +52,7 @@ export class Corner extends Component {
         
         return(
             <div>
+                <p>Si sale <b>4</b> es gol.</p>
                 {
                     numero ?
                     (

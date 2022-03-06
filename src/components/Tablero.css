@@ -103,6 +103,7 @@ aside>div h2{
     position: absolute;
     transition: all ease .6s;
     animation: lateral 1s;
+    animation-fill-mode: forwards;
 }
 @keyframes lateral {
     0% {
@@ -147,8 +148,18 @@ aside>div h2{
 .f11{
     position: absolute;
     transition: all ease .6s;
-    top: calc(14% - 12.5px);
-    left: calc(22% - 12.5px);
+    animation: cornerNuestro 1s;
+    animation-fill-mode: forwards;
+}
+@keyframes cornerNuestro {
+    0% {
+        top: calc(14% - 12.5px);
+        left: calc(22% - 12.5px);
+    }
+    100% {
+        top: calc(63% - 419.5px);
+        left: calc(11% - -287.5px);
+    }
 }
 .f12{
     position: absolute;
@@ -221,6 +232,7 @@ aside>div h2{
     position: absolute;
     transition: all ease .6s;
     animation: lateralRival 1s;
+    animation-fill-mode: forwards;
 }
 @keyframes lateralRival {
     0% {
@@ -265,9 +277,20 @@ aside>div h2{
 .f-11{
     position: absolute;
     transition: all ease .6s;
-    top: calc(85% - 12.5px);
-    left: calc(78% - 12.5px);
+    animation: cornerRival 1s;
+    animation-fill-mode: forwards;
 }
+@keyframes cornerRival {
+    0% {
+        top: calc(85% - 12.5px);
+        left: calc(78% - 12.5px);
+    }
+    100% {
+        top: calc(63% - -203.5px);
+        left: calc(11% - 12.5px);
+    }
+}
+
 .f-12{
     position: absolute;
     transition: all ease .6s;

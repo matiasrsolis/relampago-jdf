@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { avance, gol, golRival, turno, sacaMedio } from "../action";
+import Penal from "./Penal";
+
+import 'bootstrap/dist/css/bootstrap.css';
+import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 
 
 
@@ -9,7 +13,8 @@ export class Var extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            numero: 0
+            numero: 0,
+            penal: false
         };
     }
 
@@ -36,12 +41,17 @@ export class Var extends Component {
             return;
         }
         if(numDado === 3){
-            return;
+            this.props.turno();
+            this.props.sacaMedio();
         }
-        this.props.turno();
-        this.props.sacaMedio();
+        return;
     }
 
+    penal = () => {
+        this.setState({penal: !this.state.penal});
+    }
+
+    
 
         
 
@@ -52,7 +62,9 @@ export class Var extends Component {
         
         return(
             <div>
-                <p>Con 4 es GOL.</p>
+                <p>Con <b>4</b> es GOL!</p>
+                <p>Con <b>3</b> no pasó nada.</p>
+                <p>Con <b>1, 2, 5 y 6</b> es Penal!</p>
                 {
                     numero ?
                     (
@@ -66,21 +78,28 @@ export class Var extends Component {
                         <div>
                             <img src='relampago-jdf/images/3.gif' alt="dado3"/>
                             <p>No pasó nada.</p>
-                            <button onClick={(e) => {this.handleSubmit(e)}}>Ejecutá denuevo el corner</button>
+                            <button onClick={(e) => {this.handleSubmit(e)}}>Siga.</button>
                         </div>
                         :
                         <div>
                             <img src={`relampago-jdf/images/${numero}.gif`} alt="dado1"/>
-                            <p>No pasó nada.</p>
+                            <button onClick={this.penal}>Penal!!</button>
                         </div>
                     ) : (
-                        <button onClick={(e) => {this.handleSubmit(e)}}>Tirá el dado para ejecutar el corner</button>
+                        <button onClick={(e) => {this.handleSubmit(e)}}>¿Qué decisión toma el VAR?</button>
                     )
                 }
 
-            </div>
+                {/* Penal */}
+                <Modal isOpen={this.state.penal}>
+                    <ModalHeader>Penal</ModalHeader>
+                    <ModalBody><Penal/></ModalBody>
+                    <ModalFooter><button onClick={this.penal}>Cerrar</button></ModalFooter>
+                </Modal>
+
+            </div>            
         )
-    }
+    }    
 }
 
 function mapStateToProps(state) {

@@ -45,6 +45,7 @@ export class Dado extends Component {
         this.setState({casillero: pase});
     }
 
+    // El casillero setea a 0 cuando hay lateral
     lateral(event){
         event.preventDefault();
         var lateral = -5;
@@ -58,20 +59,22 @@ export class Dado extends Component {
         this.props.turno();
     }
 
-    gol(event, numero){
-        event.preventDefault();
-        this.props.gol(1);
-        this.props.turno();
-        this.props.avance(-numero);
+    // gol(event, numero){
+    //     event.preventDefault();
+    //     this.props.gol(1);
+    //     this.props.turno();
+    //     this.props.avance(-numero);
         
-    }
+    // }
 
     gol = (event, numero) => {
         event.preventDefault();
+
         if(numero === 10) {
             this.props.gol(1);
-            this.props.turno();
             this.props.avance(-numero);
+            this.props.turno();
+            return;
         }
         this.props.golRival(1);
         this.props.avance(numero);
@@ -88,10 +91,15 @@ export class Dado extends Component {
     
     penal = () => {
         this.setState({penal: !this.state.penal});
+        this.setState({var: false});
     }
 
     corner = () => {
         this.setState({corner: !this.state.corner});
+    }
+
+    var = () => {
+        this.setState({var: !this.state.var});
     }
 
     render() {
@@ -117,8 +125,8 @@ export class Dado extends Component {
                         //this.props.casillero === 5 ?
                         //    <div> <button onClick={(e) => {this.lateral(e)}}>Lateral</button></div> :
 
-                        this.props.casillero === 6 || this.props.casillero === -6 ?
-                            <div><button onClick={(e) => {this.pierdePelota(e, 6)}}>Pierde la pelota.</button></div> :
+                        // this.props.casillero === 6 || this.props.casillero === -6 ?
+                        //     <div><button onClick={(e) => {this.pierdePelota(e, 6)}}>Pierde la pelota.</button></div> :
 
                         this.props.casillero === 7 || this.props.casillero === -7 ?
                             <div><button onClick={this.tiroLibre}>Tiro libre</button></div> :
@@ -136,10 +144,10 @@ export class Dado extends Component {
                             <div><button onClick={(e) => {this.gol(e, -10)}}>GOOOOOOOOL!!!!!</button></div> :
 
                         this.props.casillero === 11 || this.props.casillero === -11 ?
-                            <div><button onClick={(e) => {this.handleSubmit(e)}}>Corner</button></div> :
+                            <div><button onClick={this.corner}>Corner</button></div> :
 
                         this.props.casillero === 12 || this.props.casillero === -12 ?
-                            <div><button onClick={(e) => {this.handleSubmit(e)}}>VAR, están revisando la jugada!</button></div> :
+                            <div><button onClick={this.var}>VAR, están revisando la jugada!</button></div> :
 
                         this.props.casillero > 12 &&  this.props.casillero < 19 ?
                             <div><button onClick={(e) => {this.handleSubmit(e)}}>Centro al área!</button></div> :
@@ -174,7 +182,7 @@ export class Dado extends Component {
                         )
                         :
                         (
-                            <div><button onClick={this.corner}>Corner</button></div>
+                            <div><button onClick={this.var}>VAR</button></div>
                         )
                 }
 
